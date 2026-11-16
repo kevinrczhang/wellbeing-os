@@ -43,7 +43,21 @@ The workload model lives in **`lib/metrics.ts`**. All scores are illustrative, n
 - The concluding System Summary connects the four themes; About opens the editable project description, also available at `/project-description/`.
 - Reduced-motion preferences disable interface transitions. Exploration and workload state last for the current page session.
 
-## Deploy to Vercel
+## GitHub Pages
+
+The live site is deployed at **https://kevinrczhang.github.io/wellbeing-os/** from **https://github.com/kevinrczhang/wellbeing-os**.
+
+Push updates to `main` to run `.github/workflows/deploy-pages.yml`. The workflow installs dependencies, tests the resource model, builds a static export, and deploys it through GitHub's Pages actions. Repository **Settings → Pages → Source** must be **GitHub Actions**.
+
+The workflow reads the Pages base path automatically. `next.config.ts` uses `NEXT_PUBLIC_BASE_PATH` to prefix routes, JavaScript, styles, images, and the favicon for repository hosting. Fonts are bundled by the CSS pipeline so their URLs also use the correct prefix. Local development continues to work at `/` without setting an environment variable.
+
+To verify a repository-path build locally:
+
+```sh
+NEXT_PUBLIC_BASE_PATH=/wellbeing-os npm run build
+```
+
+## Alternative: deploy to Vercel
 
 1. Push this directory to your own Git repository.
 2. Import it into Vercel and select **Next.js**. If importing the parent folder, set Root Directory to `wellbeing-os`.
