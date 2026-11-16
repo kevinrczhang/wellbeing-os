@@ -1,10 +1,14 @@
 # Wellbeing OS
 
-An interactive editorial website about the difference between being productive and being well. Built with Next.js, TypeScript, Tailwind CSS, and Motion. No backend, account, analytics, or external runtime requests are required.
+A guided photo journal and interactive creative project about the difference between being productive and being well. The simplified interface has four chapters, a persistent navigation menu, and a separate supporting project description. No backend, account, analytics, or external runtime requests are needed.
 
-## Local development
+**Live site:** https://kevinrczhang.github.io/wellbeing-os/
 
-Requires Node.js 20.9 or newer and npm.
+**Source:** https://github.com/kevinrczhang/wellbeing-os
+
+## Run locally
+
+Requires Node.js 20.9 or newer and npm. The deployment workflow uses Node.js 24.
 
 ```sh
 cd wellbeing-os
@@ -12,64 +16,56 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000. From this project directory, omit `cd wellbeing-os`.
+Open http://localhost:3000. If already inside this project directory, omit `cd wellbeing-os`.
 
 ```sh
-npm run typecheck
 npm test
 npm run build
+npm run typecheck
 ```
 
-`npm run build` creates the complete static website in `out/`. Webpack is selected explicitly so builds do not depend on Turbopack's process/port requirements in restricted environments. To preview a production build, run `python3 -m http.server 3000 --directory out` and open http://localhost:3000.
+The production build creates a complete static website in `out/`. `npm run build` uses Webpack to avoid Turbopack's process/port requirements in restricted environments.
 
-## Make it yours
+## Make the reflection yours
 
-Edit **`content/journal.ts`** for the four journals, reflection prompts, timeline, project description, and APA 7 references. The project description is an editable draft of 200–300 words, with its current word count displayed. Replace its final paragraph when you add your personal reflections.
+All project writing lives in **`content/journal.ts`**:
 
-Replace the four sample photographs in **`public/images/`**, then update `image`, `alt`, and `caption` in the content file. The existing images are explicitly marked illustrative; no personal life events are invented. Remove the placeholder labels only when real content has been supplied. Image credit links live in `components/ProjectDescription.tsx`.
+- Replace `personalReflection: null` with your real reflection. Prompts disappear automatically when text is supplied.
+- Replace the example `wellbeingSignals.well` and `wellbeingSignals.struggling` lists with your own observations.
+- Add your changed understanding and a concrete example of a broader context in `changedUnderstanding` and `contextReflection`.
+- Replace sample photographs in `public/images/`, update their alternative text and captions, and set each entry's `imageIsPersonal` to `true` when appropriate.
+- Personalise `projectDescription`, particularly its final paragraph, once the real experiences have been added. The page displays its word count; keep it between 200 and 300 words.
+- Add references actually used to `references`, formatted in APA 7 if needed. Image credit links live in `components/ProjectDescription.tsx`.
 
-The workload model lives in **`lib/metrics.ts`**. All scores are illustrative, never validated health measurements. Theme variables and responsive layouts live in **`app/globals.css`**. Type is bundled locally with licenses in `public/fonts/`.
+The introductory “personal edition in progress” note and the project-description draft label are in `app/page.tsx` and `components/ProjectDescription.tsx`. Remove them only when the project has been personalised. Do not submit sample cues or reflection prompts as personal experiences. See `PROJECT-NOTES.md` for a rubric map and the remaining author work.
 
-## Interactions
+## Reading experience
 
-- Open applications with the desktop icons, Explore menu, or bottom taskbar.
-- Drag a desktop window by its title bar; click a window to bring it forward.
-- Focus a title bar and use arrow keys to move it; Shift moves in larger steps.
-- Close and minimize with the two square controls. Restore minimized applications from the taskbar. Escape closes the foreground window.
-- Maximize with the right square control or double-click the title bar. Arrange resets window positions and restores minimized windows.
-- Adjust workload with the mouse, touch, or native range-input arrow keys. Reset returns to 45%.
-- Recovery has a separate illustrative recharge experiment.
-- Mobile uses application switching and one visible window at a time, with scrollable journal content.
-- The concluding System Summary connects the four themes; About opens the editable project description, also available at `/project-description/`.
-- Reduced-motion preferences disable interface transitions. Exploration and workload state last for the current page session.
+1. **What helps** — four photo-journal entries about connection, purpose, recovery, and environment, with space for meaning and personal evidence.
+2. **My signals** — signs of doing well or needing to pause, plus reflection on how understanding changes.
+3. **Beyond me** — reciprocal care, community, the earth, institutional expectations, resources, and cultural influences.
+4. **Find balance** — an interactive workload experiment, with an accessible range control and three example settings.
+
+The project description is always accessible from the header and is also linked after the closing summary. All chapters remain visible on the page. Keyboard focus, a skip link, native anchor navigation, readable mobile layouts, and reduced-motion preferences are supported.
 
 ## GitHub Pages
 
-The live site is deployed at **https://kevinrczhang.github.io/wellbeing-os/** from **https://github.com/kevinrczhang/wellbeing-os**.
+Push updates to `main` to run `.github/workflows/deploy-pages.yml`. The workflow installs dependencies, tests the resource model, builds a static export, and deploys it through GitHub's Pages actions. Repository **Settings → Pages → Source** is set to **GitHub Actions**.
 
-Push updates to `main` to run `.github/workflows/deploy-pages.yml`. The workflow installs dependencies, tests the resource model, builds a static export, and deploys it through GitHub's Pages actions. Repository **Settings → Pages → Source** must be **GitHub Actions**.
-
-The workflow reads the Pages base path automatically. `next.config.ts` uses `NEXT_PUBLIC_BASE_PATH` to prefix routes, JavaScript, styles, images, and the favicon for repository hosting. Fonts are bundled by the CSS pipeline so their URLs also use the correct prefix. Local development continues to work at `/` without setting an environment variable.
-
-To verify a repository-path build locally:
+The workflow reads the Pages base path automatically. `NEXT_PUBLIC_BASE_PATH` prefixes routes and public assets; fonts are bundled by the CSS pipeline. Local development works at `/` without this variable.
 
 ```sh
 NEXT_PUBLIC_BASE_PATH=/wellbeing-os npm run build
 ```
 
-## Alternative: deploy to Vercel
+This creates a build for the repository URL. To preview it, serve the parent of an `out/` directory mounted as `wellbeing-os/`. For a root-path production preview, run `npm run build` without the variable, followed by `python3 -m http.server 3000 --directory out`.
 
-1. Push this directory to your own Git repository.
-2. Import it into Vercel and select **Next.js**. If importing the parent folder, set Root Directory to `wellbeing-os`.
-3. Use `npm run build` as the build command. No environment variables are needed. The Next.js static export uses `out/`.
-4. Deploy. Both `/` and `/project-description/` are statically generated.
+## Alternative hosting
 
-You may also serve `out/` with any static host. `.openai/hosting.json` holds the separate Sites identity and static output path; Vercel does not use this file.
+For Vercel, import this directory as a Next.js project with `npm run build`. No environment variables are needed for a root-domain deployment. Any static host can serve the `out/` directory. `.openai/hosting.json` preserves the original Sites identity; GitHub Pages and Vercel do not use it.
 
-## Validation
+## Model and assets
 
-The model tests cover the intended productivity/wellbeing tradeoff, initial gains from meaningful work, all 101 workload values, boundary clamping, and system message thresholds. TypeScript and the production build validate both routes and the React application. Visual browser QA should cover desktop dragging/layering, mobile navigation, keyboard focus, and reduced motion when browser access is available.
+`lib/metrics.ts` contains an explicitly fictional resource model. Its tests cover initial gains from work, the productivity/wellbeing tradeoff, all 101 workload values, clamping, and status boundaries. Scores are never represented as validated health measurements.
 
-## Asset credits
-
-The illustrative photographs are downloaded from Unsplash and listed in the application's image credits. They are bundled locally and must be replaced to make the submission personal. DM Sans and IBM Plex Mono are open-source fonts under the SIL Open Font License. No images are represented as original personal photography.
+Sample photographs are bundled from Unsplash and labelled as illustrative. DM Sans and IBM Plex Mono are distributed under the SIL Open Font License; copies of the licenses are included in `public/fonts/`.
