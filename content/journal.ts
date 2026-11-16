@@ -1,97 +1,93 @@
-/**
- * EDIT YOUR PROJECT HERE.
- * Replace each personalReflection: null with your own reflection and replace
- * sample photographs in public/images. Do not present a prompt as a life event.
- * The other writing describes the project's ideas, not an invented biography.
- */
+/** Personal reflections supplied by the author. */
 export type JournalId = "connections" | "purpose" | "recovery" | "environment";
-export type AppId = JournalId | "monitor" | "summary" | "about";
 
-export const journal: {
-  id: JournalId; number: string; name: string; title: string; meaning: string;
-  image: string; alt: string; imageIsPersonal: boolean; caption: string;
-  personalReflection: string | null; prompt: string;
-}[] = [
+export type JournalEntry = {
+  id: JournalId;
+  number: string;
+  name: string;
+  title: string;
+  personalReflection: string;
+};
+
+export const journal: JournalEntry[] = [
   {
-    id: "connections", number: "01", name: "Connection",
-    title: "Time with people who matter.",
-    meaning: "Belonging offers something achievement cannot: the chance to be valued without having to produce a result. Making room for others also means listening, showing up, and recognising that care goes both ways.",
-    image: "/images/connections.jpg", alt: "Sample photograph of people sharing time outdoors", imageIsPersonal: false,
-    caption: "A moment of being together, without an agenda.", personalReflection: null,
-    prompt: "Add a specific moment when someone helped you feel understood. Explain why it mattered, how you offered care in return, and what happens to this relationship when you get busy.",
+    "id": "connections",
+    "number": "01",
+    "name": "Connection",
+    "title": "Time with people who matter.",
+    "personalReflection": "When I'm overwhelmed by school or other responsibilities, spending time with my partner and friends helps me feel supported. Being able to talk about things unrelated to academics reminds me that my value isn't determined by my accomplishments.\n\nI try to return that care by listening, making time for others, and supporting them when they're going through difficult periods.\n\nHowever, when I get busy, relationships are often the first thing I accidentally forget about. I’d always tell myself I'll spend more time with people once I get less busy, but there's always going to be another deadline. I've learned that meaningful relationships require consistent attention."
   },
   {
-    id: "purpose", number: "02", name: "Purpose",
-    title: "Something meaningful to work toward.",
-    meaning: "Learning and making progress can bring direction. The tension is that a meaningful goal can also become pressure. A finished task says something about output; it does not say everything about the person doing it.",
-    image: "/images/purpose.jpg", alt: "Sample photograph of writing materials on a desk", imageIsPersonal: false,
-    caption: "Progress can be meaningful without filling every hour.", personalReflection: null,
-    prompt: "Add a goal or learning experience that mattered to you. Describe both its fulfilment and its cost. What helped you distinguish meaningful progress from pressure to keep achieving?",
+    "id": "purpose",
+    "number": "02",
+    "name": "Purpose",
+    "title": "Something meaningful to work toward.",
+    "personalReflection": "Learning new things and challenging myself academically gives me a sense of purpose. I enjoy solving difficult problems or learning new technical skills, and seeing myself improve over time.\n\nHowever, pursuing academic and career goals can also create quite a lot of stress for me. Sometimes I become so focused on the next exam, assignment, or opportunity that I forget to appreciate what I've already accomplished.\n\nI've come to realize that progress is really all about genuinely understanding what I'm learning, enjoying the process, and growing as a person rather than constantly chasing the next big thing."
   },
   {
-    id: "recovery", number: "03", name: "Recovery",
-    title: "Room to rest and enjoy a day.",
-    meaning: "Rest, hobbies, and unstructured time make room for a life beyond responsibilities. Recovery matters in its own right, as well as making attention and patience available for other parts of life.",
-    image: "/images/recovery.jpg", alt: "Sample photograph of sunlight entering a quiet forest", imageIsPersonal: false,
-    caption: "Time that does not have to justify itself.", personalReflection: null,
-    prompt: "Add an activity that restores you. Describe how you feel before and after it, why pausing can be difficult, and how you recognise the difference between restoration and simply avoiding a responsibility.",
+    "id": "recovery",
+    "number": "03",
+    "name": "Recovery",
+    "title": "Room to rest and enjoy a day.",
+    "personalReflection": "Spending time outdoors, particularly walking through Vancouver's forests, helps me disconnect from academic responsibilities.\n\nBefore taking a break, my mind is often occupied by deadlines and unfinished tasks. Being outside allows me to focus on my surroundings rather than my to-do list. Afterward, I usually feel calmer and more mentally refreshed.\n\nSlowing down can be difficult because I'm accustomed to measuring my days by productivity. Sometimes resting feels like wasting time.\n\nFor me, the difference between recovery and avoidance is how I feel afterward. Rest helps me return to my responsibilities with more energy and perspective, whereas avoidance often leaves me more anxious and thinking about how I could’ve used that time to get more things done."
   },
   {
-    id: "environment", number: "04", name: "Environment",
-    title: "A place with room to breathe.",
-    meaning: "Light, noise, safety, shared spaces, and access to nature influence the possibilities for feeling well. Enjoying a place also raises a question about responsibility: how can care for a place extend beyond the person visiting it?",
-    image: "/images/environment.jpg", alt: "Sample photograph of a mountain lake and its reflection", imageIsPersonal: false,
-    caption: "A reminder that wellbeing has a setting.", personalReflection: null,
-    prompt: "Add a place that changes how you feel. Explain what it gives you, who or what makes access possible, and one way you care for that place or the life it supports.",
-  },
+    "id": "environment",
+    "number": "04",
+    "name": "Environment",
+    "title": "A place with room to breathe.",
+    "personalReflection": "Vancouver's natural environment, particularly places like Pacific Spirit Park, offers a contrast to my everyday routine of studying and spending time indoors.\n\nBeing surrounded by trees and nature grounds me into the powerful feeling of now. It reminds me that there's more to life than mental constructs like academic responsibilities.\n\nAccess to these spaces depends on having free time, transportation, and nearby public green spaces. I recognize that not everyone has equal access to these opportunities."
+  }
 ];
 
-/** Possible reflection cues, not claims about your actual symptoms. */
 export const wellbeingSignals = {
-  well: [
-    "There is room for people alongside responsibilities.",
-    "Rest and enjoyable activities have a place in the week.",
-    "Work feels connected to something meaningful.",
+  "well": [
+    "I genuinely enjoy what I'm learning rather than simply trying to finish assignments.",
+    "I have enough time and energy to spend with people I care about.",
+    "I can relax without constantly worrying about unfinished responsibilities."
   ],
-  struggling: [
-    "Tasks keep getting done while everything else gets postponed.",
-    "Time with others feels like another demand to fit in.",
-    "Pausing feels difficult, even when recovery is needed.",
+  "struggling": [
+    "I feel guilty whenever I'm not being productive.",
+    "I lose interest in activities I normally enjoy.",
+    "I sacrifice sleep, relationships, or personal time to complete more work."
   ],
-  personalReflection: null as string | null,
-  prompt: "Which of these cues actually fits you? Replace the examples with your own signs. Describe a time you looked productive but were struggling, what you initially missed, and what you would notice or do differently now.",
+  "personalReflection": "Balancing multiple university courses and preparing for my future career has sometimes meant accomplishing a lot while feeling mentally exhausted.\n\nFrom the outside, I appeared productive, but internally my focus was so divided that I wasn’t really learning anymore nor enjoying what I was doing.\n\nInitially, I interpreted finishing tasks as evidence that I was doing well. What I overlooked was that productivity doesn't necessarily reflect someone's mental and emotional wellbeing.\n\nNow, I try to pay attention to whether I feel fulfilled, rested, and connected to others rather than judging my wellbeing purely through accomplishments."
 };
 
 export const widerConnections = [
-  { name: "Other people", title: "Care moves in both directions.", text: "Support can make room to cope, but the people offering it have needs too. Shared wellbeing involves listening, respecting boundaries, and making space for reciprocity." },
-  { name: "Community", title: "Belonging needs places and people.", text: "Accessible shared spaces, mutual support, and opportunities to participate can make wellbeing more possible. These resources are shaped by collective decisions, not only individual habits." },
-  { name: "The earth", title: "The places that sustain us need care.", text: "Time outdoors can invite attention to the living world. The connection also asks for responsibility toward shared land, water, and the conditions that sustain other lives." },
-];
-
-export const broaderContexts = [
-  { context: "Study & work expectations", influence: "Deadlines and institutional ideas about success can shape how much time feels available for rest and relationships.", response: "Reflect on an expectation that affects you. What can you adjust, and what would require support or a change beyond you?" },
-  { context: "Money, time & access", influence: "A safe home, free time, transport, and access to shared spaces influence which wellbeing practices are realistic.", response: "Identify an opportunity or constraint in your life. Describe a realistic response without assuming everyone has the same resources." },
-  { context: "Culture & belonging", influence: "Ideas about independence, responsibility, rest, and achievement can influence what feels acceptable or valuable.", response: "Choose an influence that actually applies to you. What do you want to carry forward, question, or understand differently?" },
+  {
+    "name": "Other people",
+    "title": "Care moves in both directions.",
+    "text": "My partner and friends remind me that my value isn't determined by my accomplishments. I try to return that care by listening, making time for others, and supporting them through difficult periods."
+  },
+  {
+    "name": "Community",
+    "title": "Our surroundings shape what is possible.",
+    "text": "My wellbeing is influenced by the competitive academic environment around me and by access to shared public green spaces. Free time, transportation, and nearby parks make a difference, and not everyone has equal access to these opportunities."
+  },
+  {
+    "name": "The earth",
+    "title": "The natural world brings me into the present.",
+    "text": "Walking through Vancouver's forests helps me focus on my surroundings instead of my to-do list. Places like Pacific Spirit Park remind me that there is more to life than academic responsibilities."
+  }
 ];
 
 export const contextReflection = {
-  personalReflection: null as string | null,
-  prompt: "Choose one context above that affects your life. Describe a concrete example, how it shapes your wellbeing or another person's, and your response. Acknowledge what is outside your control as well as what you can change.",
+  "personalReflection": "One major influence on my wellbeing is the competitive academic environment surrounding university and the technology industry.\n\nThere's considerable emphasis on securing internships, maintaining strong grades, and preparing for successful careers.\n\nFor example, hearing about other students' accomplishments can sometimes create pressure to compare my progress with theirs, even when I'm satisfied with my own direction.\n\nThese expectations can motivate me, but they can also make accomplishments feel temporary because there's always another goal to achieve.\n\nI try to respond by evaluating my choices based on what genuinely matters to me rather than what appears impressive to others.\n\nWhile I can control my priorities and how I respond to comparison, broader pressures created by academic institutions, hiring practices, and economic uncertainty also influence students' wellbeing."
 };
 
 export const changedUnderstanding = {
-  personalReflection: null as string | null,
-  prompt: "Finish this thought with your own experience: ‘I used to judge how I was doing by ____. An experience that complicated this was ____. Now I pay attention to ____, because ____.’",
+  "personalReflection": "Previously, I judged how well I was doing through academic performance, career opportunities, and personal achievements.\n\nBeing surrounded by ambitious students reinforced this mindset. There always seemed to be another goal to pursue or another opportunity to prepare for.\n\nHowever, experiencing periods where I was academically productive but mentally exhausted started to change that understanding.\n\nI've realized that wellbeing isn't something I automatically achieve after accomplishing a goal. Instead, it comes from my relationships, emotional energy, enjoyment of everyday experiences, and ability to rest.\n\nI still value ambition and personal growth, but I no longer believe achievement alone determines whether I'm doing well."
 };
 
-/** Supporting description: 200–300 words, editable and clearly marked as a draft. */
 export const projectDescription = [
-  "Wellbeing OS represents wellbeing as the room available for a meaningful life. Its central idea is that a system can be productive without being healthy. I use the language of an operating system to question the assumption that completing more tasks necessarily means doing well.",
-  "The photo journal brings together four parts of this idea: connection, purpose, recovery, and environment. Relationships represent belonging and reciprocal care. Purpose represents the fulfilment of learning and working toward something meaningful, while acknowledging the pressure that ambition can create. Recovery gives rest and enjoyment a place alongside responsibility. Environment draws attention to the places and living systems that support wellbeing.",
-  "The interactive workload experiment makes their interdependence visible. Increasing the workload initially supports productivity, but eventually leaves less room for connection and recovery. Its fictional values are a creative metaphor, not a health assessment. The important moment is noticing that an apparently successful system can still be struggling.",
-  "A section on personal signals asks how wellbeing is recognised in everyday life. Another widens the view to community, culture, institutional expectations, and access to resources. Together, these sections challenge the idea that wellbeing depends only on individual effort.",
-  "The simple reading order, restrained colours, and linked resource bars are deliberate creative choices. They invite attention to relationships between the parts rather than competition for the highest score. The marked spaces for personal experiences and photographs must still be completed to connect this interpretation to my own life. The concluding message is that care, meaning, and sustainable participation matter alongside achievement.",
+  "I created Wellbeing OS because I often approach my life like a computer system: constantly trying to improve performance, complete tasks, and optimize my time. However, I've realized that a system can still perform without actually being healthy.",
+  "The website represents wellbeing through four themes: connection, purpose, recovery, and environment.",
+  "Connection represents the relationships that remind me I'm valued beyond my accomplishments. Purpose reflects the fulfillment I experience through learning and personal growth, but also the pressure that comes with academic ambition. Recovery represents the importance of taking breaks without guilt, while environment explores how natural spaces and the communities around me influence how I feel.",
+  "Each section uses personal reflections and interactive elements to communicate these experiences.",
+  "The central interactive feature is the System Monitor, where visitors adjust a workload slider and observe how increasing productivity can eventually negatively affect recovery, relationships, and overall wellbeing. I created this as a metaphor that shows how everything is a tradeoff.",
+  "I chose this interaction because it captures an important change in my understanding of wellbeing. I previously measured success primarily through academic and career achievements, but I've learned that accomplishment alone doesn't guarantee happiness or fulfillment.",
+  "Ultimately, I want readers to understand that wellbeing is about maintaining a balance that allows us to enjoy the lives we're working so hard to build."
 ];
 
-// Add only sources actually used. Format them in APA 7 when required.
 export const references: string[] = [];

@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { calculateMetrics, getSystemStatus } from "@/lib/metrics";
-import { Icon } from "./Icon";
 
 export default function Monitor() {
   const [workload, setWorkload] = useState(45);
@@ -15,7 +14,7 @@ export default function Monitor() {
     { key: "purpose", label: "Purpose", value: values.purpose },
   ];
   return <div className="balance-experiment">
-    <div className="experiment-titlebar"><span><Icon name="monitor" size={19}/>SYSTEM MONITOR</span><span>AN ILLUSTRATIVE EXPERIMENT</span></div>
+    <div className="experiment-titlebar"><span>SYSTEM MONITOR</span><span>AN ILLUSTRATIVE EXPERIMENT</span></div>
     <div className="experiment-grid">
       <div className="experiment-controls">
         <div className="experiment-intro"><span className="eyebrow">TRY CHANGING THE PACE</span><h3>What does your workload<br/>leave room for?</h3></div>

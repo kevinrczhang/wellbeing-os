@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { BrandMark } from "./Icon";
 
 const chapters = [
   { id: "what-helps", label: "What helps", number: "01" },
@@ -22,7 +21,7 @@ export default function Navigation() {
     return () => observer.disconnect();
   }, []);
   return <header className="site-header"><div className="header-inner">
-    <a className="site-brand" href="#top" aria-label="Wellbeing OS, back to the beginning"><BrandMark size={24}/><span>Wellbeing OS<span className="brand-subtitle">A personal exploration</span></span></a>
+    <a className="site-brand" href="#top" aria-label="Wellbeing OS, back to the beginning"><span>Wellbeing OS<span className="brand-subtitle">A personal exploration</span></span></a>
     <nav className="chapter-navigation" aria-label="Project chapters">{chapters.map(chapter => <a key={chapter.id} href={`#${chapter.id}`} aria-current={active === chapter.id ? "location" : undefined} onClick={() => setActive(chapter.id)}><span>{chapter.number}</span>{chapter.label}</a>)}</nav>
     <Link className="description-navigation" href="/project-description/">Project description <span aria-hidden="true">↗</span></Link>
   </div></header>;
