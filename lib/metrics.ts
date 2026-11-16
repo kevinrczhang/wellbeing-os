@@ -11,18 +11,18 @@ export function calculateMetrics(workload: number) {
 
 export function getSystemStatus(workload: number) {
   if (workload >= 76) return {
-    kind: "warning", label: "Resources under pressure",
+    kind: "warning", label: "Overloaded",
     message: "WARNING: Productivity is high. Wellbeing is declining.",
-    detail: "Less room for people. Less time to recover. Something has to give.",
+    detail: "Sometimes I become so focused on the next exam, assignment, or opportunity that I forget to appreciate what I've already accomplished.",
   };
   if (workload <= 24) return {
-    kind: "resting", label: "Room to reconnect",
+    kind: "resting", label: "Quieter",
     message: "STATUS: A quieter pace. Space to rest and find direction.",
-    detail: "A lighter load can open up room for the things you've been missing.",
+    detail: "Afterward, I usually feel calmer and more mentally refreshed.",
   };
   return {
-    kind: "balanced", label: "System balanced",
-    message: "STATUS: System balanced. Resources available for what matters.",
-    detail: "There is room for meaningful work, and a life around it.",
+    kind: "balanced", label: "Balanced",
+    message: "STATUS: Balanced. Resources available for what matters.",
+    detail: "I still value ambition and personal growth, but I no longer believe achievement alone determines whether I'm doing well.",
   };
 }
